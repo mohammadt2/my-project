@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Main Meta Tags -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Important Meta Tags -->
+    <meta name="author" content="enote" />
+    <meta name="description" content="">
+    <meta name="keywords" content="" />
+
+    <!-- Library Styles -->
+    <link rel="stylesheet" href="../static/assets/scss/libs/bootstrap.min.css">
+
+    <!-- Main Style -->
+    <link rel="stylesheet" href="../static/main.css" />
+
+    <!-- Page Title & Icon -->
+    <title>result 1</title>
+    <link rel="shortcut icon" href="../static/assets/images/icon.png" />
+
+</head>
+
+<body>
+
+
+    <div class="content">
+        <div class="container">
+            {%if res['cases']==2%}
+            <div class="upper-header">
+                <h3 class="result-text">YOUR TASK IS SAFE</h3>
+                <img src="../static/assets/images/2081.png" alt="">
+            </div>
+            {%elif res['cases']==1%}
+            <div class="upper-header">
+                <h3 class="result-text-danger">YOUR TASK REQUIRES ADUSTMENTS</h3>
+                <img src="../static/assets/images/2081.png" alt="">
+            </div>
+            {%else%}
+            <div class="upper-header">
+                <h3 class="result-text-danger">YOUR TASK IS {{res['result']}}</h3>
+                <img src="../static/assets/images/2081.png" alt="">
+            </div>
+            {%endif%}
+            <div class="result-content">
+                <div class="row">
+
+                    <div class="col-lg-6">
+                        <div class="result-content-part">
+                            <h3 class="result-text">RESULTS</h3>
+                            <div class="result-content-info">
+                                <ul class="font-900">
+                                    <li>RWL = {{report['RWL']}}</li>
+                                </ul>
+                                {% if  res['risk'] == "cannot be determined" %}
+
+                                <p>Due to the RWL being calculated as 0, the Load Index (LI) <span
+                                    class="active-span">cannot be
+                                    determined</span>. Please review the recommendations provided to adjust the lifting
+                                task for safer conditions.
+                            </p>
+
+                                {% elif res['risk'] == "very Low"  %}
+                                p>RISK LEVEL: <span class="green-span font-900">VERY LOW</span>.</p>
+                                <p>SINCE THE <span class="font-900">LI ≤ 1</span>, YOUR TASK IS <span
+                                        class="green-span font-900">SAFE</span>.</p>
+                                {% elif res['risk'] == "Low" %}
+                                <p>RISK LEVEL: <span class="green-span font-900">LOW</span>.</p>
+                                <p>SINCE THE <span class="font-900">LI > 1</span>, YOUR TASK IS <span
+                                        class="active-span font-900">UNSAFE</span>.</p>
+                                        {% elif res['risk'] == 'Moderate' %}
+                                        <p>RISK LEVEL: <span class="yellow-span font-900">MODERATE</span>.</p>
+                                <p>SINCE THE <span class="font-900">LI > 1</span>, YOUR TASK IS <span
+                                        class="active-span font-900">UNSAFE</span>.</p>
+                                                {% elif res['risk'] == 'High' %}
+                                                <p>RISK LEVEL: <span class="active-span font-900">HIGH</span>.</p>
+                                <p>SINCE THE <span class="font-900">LI > 1</span>, YOUR TASK IS <span
+                                        class="active-span font-900">UNSAFE</span>.</p>
+                                        {% elif res['risk'] == 'Very High' %}
+                                        <p>RISK LEVEL: <span class="active-span font-900">VERY HIGH</span>.</p>
+                                        <p>SINCE THE <span class="font-900">LI > 1</span>, YOUR TASK IS <span
+                                                class="active-span font-900">UNSAFE</span>.</p>
+                                        {%else%}
+                                        <p>RISK LEVEL: <span class="active-span font-900">Incorrect</span>.</p>
+                                        <p>SINCE THE <span class="font-900">LI ≤ 1</span>, YOUR TASK IS <span
+                                            class="active-span font-900">{{res['result']}}</span>.</p>
+                                        {% endif %}
+
+                            </div>
+                            <a href="/download_pdf" class="result-btn">EXPORT</a>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="result-content-part">
+                            <h3 class="result-text">RECOMMENDATIONS</h3>
+
+
+
+
+                            {% if  res['risk'] == "cannot be determined" %}
+
+                            <div class="result-content-info">
+                                <p>Some parameter values have exceeded acceptable ranges, resulting in an
+                                    RWL of 0. To ensure safe lifting conditions, please consider the following
+                                    recommendations for adjusting parameter values:
+                                </p>
+                                <ul>
+    
+                                    <li>For <span class="active-span">HM</span>: Adjust the horizontal location of the load
+                                        (H) to be below 63 cm.</li>
+    
+                                    <li>For <span class="active-span">VM</span>: Ensure the vertical location of the load
+                                        (V) is below 175 cm.</li>
+    
+                                    <li>For <span class="active-span">DM</span>: Ensure the distance of the lift (D) is
+                                        below 175 cm.
+                                    </li>
+    
+                                    <li>For <span class="active-span">AM</span>: Adjust the asymmetry angle of the lift (A)
+                                        to be below 135°.
+                                    </li>
+    
+                                    <li>For <span class="active-span">FM</span>: Avoid excessive frequency of lifts and
+                                        consider adjusting the
+                                        work duration to ensure safer lifting practices.
+                                    </li>
+    
+    
+                                </ul>
+                            </div>
+                            
+
+
+                                {% elif res['risk'] == "very Low"  %}
+                                    <div class="result-content-info">
+                                        <p class="font-900">BASED ON THE PARAMETERS PROVIDED, IT CAN BE CONFIDENTLY STATED THAT
+                                            THE LIFTING TASK
+                                            MEETS THE SAFETY STANDARDS OF NIOSH, AND IS CONSIDERED <span
+                                                class="green-span">SAFE</span></p>
+                                    </div>
+                                {% elif res['risk'] == "Low" %}
+                    
+                                    <div class="result-content-info">
+                                        <ul class="font-900">
+                                            <li>For the Horizontal Location of the Load ( <span class="active-span">HM</span> ):
+                                                Reduce the distance
+                                                between the body and the load. Keeping the load close to the body
+                                                during the lift decreases back strain and improves stability</li>
+        
+                                            <li>For the Vertical Location of the Load Relative to the Floor ( <span
+                                                    class="active-span">VM</span> ): Adjust
+                                                the starting height of the load to be between knee and waist level. Lifting
+                                                aids or adjustments to the setup should be used to avoid lifting from foor
+                                                level or above shoulder height. Additionally, consider setting the object
+                                                height close to the ideal value of 75 cm to simultaneously increase VM
+                                                and DM.
+                                            </li>
+                                        </ul>
+                                    </div>
+                                        {% elif res['risk'] == 'Moderate' %}
+                                        <div class="result-content-info">
+                                            <ul class="font-900">
+            
+                                                <li>For the Vertical Travel Distance of the Load ( <span
+                                                        class="active-span">DM</span>
+                                                    ): Minimize the vertical
+                                                    distance the load needs to be moved. Avoid lifting or lowering the load
+                                                    more than necessary by rearranging storage or work practices.
+                                                </li>
+            
+                                                <li>For the Asymmetry Angle of the Lift ( <span class="active-span">AM</span> ):
+                                                    Reduce
+                                                    twisting and turning
+                                                    during lifting, aiming to minimize or eliminate them if possible.
+                                                    Additionally, strive to decrease the angle of twisting to approach the ideal
+                                                    angle of 0 degrees for improved ergonomics and lifting safety</li>
+                                            </ul>
+                                        </div>
+                                                {% elif res['risk'] == 'High' %}
+                                                <div class="result-content-info">
+                                                    <ul class="font-900">
+                                                        <li>For the Horizontal Location of the Load (<span
+                                                                class="active-span">HM</span> ): Reduce the distance between the body and the load. Keeping the load close to the body during the lift decreases back strain and improves stability.
+                                                        </li>
+                                                        <li>For the Vertical Location of the Load Relative to the Floor (<span
+                                                                class="active-span">VM</span>): Adjust the starting height of the load to be between knee and waist level. Lifting aids or adjustments to the setup should be used to avoid lifting from floor level or above shoulder height. Additionally, consider setting the object height close to the ideal value of 75 cm to simultaneously increase VM and DM.
+                                                        </li>
+                                                        <li>For the Vertical Travel Distance of the Load (<span
+                                                                class="active-span">DM</span>): Minimize the vertical distance the load needs to be moved. Avoid lifting or lowering the load more than necessary by rearranging storage or work practices.
+                                                        </li>
+                                                        <li> For the Asymmetry Angle of the Lift (<span
+                                                                class="active-span">AM</span>): Reduce twisting and turning during lifting, aiming to minimize or eliminate them if possible. Additionally, strive to decrease the angle of twisting to approach the ideal angle of 0 degrees for improved ergonomics and lifting safety.
+                                                        </li>
+                                                        <li>For the Frequency and Duration of Lifting Activity ( <span
+                                                                class="active-span">FM</span> ): FM can be
+                                                            increased by decreasing the number of lifts per minute (frequency),
+                                                            ensuring adequate rest breaks between lifting tasks, and rotating
+                                                            workers to reduce task duration.
+                                                        </li>
+                                                        <li> For the Coupling or Quality of the Worker's Grip on the Load (<span
+                                                                class="active-span">CM</span>): Improve the grip on the load by using handles or straps, where possible. The object to be lifted should be stable and easily graspable to reduce the risk of slips and drops.
+                                                        </li>
+                                                        <li>Reducing the actual weight of the load could align with safer lifting parameters.
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                        {% elif res['risk'] == 'Very High' %}
+                                        <div class="result-content-info">
+                                            <ul class="font-900">
+            
+                                                <li>For the Coupling or Quality of the Worker's Grip on the Load ( <span
+                                                        class="active-span">CM</span> ):
+                                                    Improve the grip on the load by using handles or straps, where possible.
+                                                    The object to be lifted should be stable and easily graspable to reduce
+                                                    the risk of slips and drops.</li>
+            
+                                            </ul>
+                                        </div>
+                                        {%else%}
+
+                                        <div class="result-content-info">
+                                            <p>Some parameter values have exceeded acceptable ranges, resulting in an
+                                                RWL of 0. To ensure safe lifting conditions, please consider the following
+                                                recommendations for adjusting parameter values:
+                                            </p>
+                                            <ul>
+                
+                                                <li>For <span class="active-span">HM</span>: Adjust the horizontal location of the load
+                                                    (H) to be below 63 cm.</li>
+                
+                                                <li>For <span class="active-span">VM</span>: Ensure the vertical location of the load
+                                                    (V) is below 175 cm.</li>
+                
+                                                <li>For <span class="active-span">DM</span>: Ensure the distance of the lift (D) is
+                                                    below 175 cm.
+                                                </li>
+                
+                                                <li>For <span class="active-span">AM</span>: Adjust the asymmetry angle of the lift (A)
+                                                    to be below 135°.
+                                                </li>
+                
+                                                <li>For <span class="active-span">FM</span>: Avoid excessive frequency of lifts and
+                                                    consider adjusting the
+                                                    work duration to ensure safer lifting practices.
+                                                </li>
+                
+                
+                                            </ul>
+                                        </div>
+                                        
+                                            {% endif %}
+
+
+                            <a href="/" class="result-btn">RETURN TO HOME PAGE</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Main Scripts -->
+    <script src="../static/assets/js/libs/jquery-3.6.3.min.js"></script>
+    <script src="../static/assets/js/libs/bootstrap.min.js"></script>
+    <script src="../static/assets/js/libs/popper.js"></script>
+    <script src="../static/main.js"></script>
+
+
+</body>
+
+</html>
