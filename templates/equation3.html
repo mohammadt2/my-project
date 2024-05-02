@@ -73,7 +73,7 @@
                     <div class="col-lg-8">
 
                         <div class="lower-equ-line">
-                            <h4 class="lower-equ-line-header">To Calculate the <span class="active-span">Distance Mltiplier</span> ( DM ), insert D :</h4>
+                            <h4 class="lower-equ-line-header">To Calculate the <span class="active-span">Distance Multiplier</span> ( DM ), insert D :</h4>
                             
                             <form id="equationForm" action="{{ url_for('equation3') }}" method="post">
                                 <div class="input-line">
@@ -135,7 +135,7 @@
     $(document).ready(function() {
         $('#nextButton').click(function() {
             var cardboardBoxHeight = parseFloat($('#cardboardBoxHeight').val());
-            if (cardboardBoxHeight >= 175||cardboardBoxHeight==0) {
+            if (cardboardBoxHeight > 175) {
                 // If distance is greater than 63, show the popup
                 $('#popup').addClass('open-popup');
             } else {
@@ -156,7 +156,7 @@
 
    <div id="popup" class="popup-pagination text-center">
        <span>Warning</span>
-       <p>Since D> 175 cm, the RWL = 0 . Do You Want To Edit D</p>
+       <p>Since D> 175 cm, the RWL = 0 . Do You Want To Edit D?</p>
        <div class="input-line">
            <div class="radio_container">
                <label class="close-popup-pagination">Edit</label>

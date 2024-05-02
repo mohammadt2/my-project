@@ -134,7 +134,7 @@
     $(document).ready(function() {
         $('#nextButton').click(function() {
             var asymmetricAngle = parseFloat($('#asymmetricAngle').val());
-            if (asymmetricAngle >= 135 ||asymmetricAngle==0) {
+            if (asymmetricAngle > 135 ) {
                 // If distance is greater than 63, show the popup
                 $('#popup').addClass('open-popup');
             } else {
@@ -158,7 +158,7 @@
 
    <div id="popup"class="popup-pagination text-center">
        <span>Warning</span>
-       <p>Since A> 135 °, the RWL = 0 . Do You Want To Edit A</p>
+       <p>Since A> 135 °, the RWL = 0 . Do You Want To Edit A?</p>
        <div class="input-line">
            <div class="radio_container">
                <label class="close-popup-pagination">Edit</label>

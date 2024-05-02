@@ -73,7 +73,7 @@
                     <div class="col-lg-8">
 
                         <div class="lower-equ-line">
-                            <h4 class="lower-equ-line-header">To Calculate the <span class="active-span">Horizontal Mltiplier</span> ( HM ), insert H :</h4>
+                            <h4 class="lower-equ-line-header">To Calculate the <span class="active-span">Horizontal Multiplier</span> ( HM ), insert H :</h4>
                             
                             <form id="equationForm" action="{{ url_for('equation1') }}" method="post">
                                 
@@ -140,7 +140,7 @@
     $(document).ready(function() {
         $('#nextButton').click(function() {
             var horizontalDistance = parseFloat($('#horizontalDistance').val());
-            if (horizontalDistance >=63 ||horizontalDistance ==0) {
+            if (horizontalDistance >63 ) {
                 // If distance is greater than 63, show the popup
                 $('#popup').addClass('open-popup');
             } else {

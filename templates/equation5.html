@@ -71,7 +71,7 @@
               <div class="lower-equ-line">
                 <h4 class="lower-equ-line-header">
                   To Calculate the
-                  <span class="active-span">Frequency Angle</span> ( FM ), insert
+                  <span class="active-span">Frequency Multiplier</span> ( FM ), insert
                   F :
                 </h4>
                
@@ -174,7 +174,7 @@
           $('#nextButton').click(function() {
               var liftingFrequency = parseFloat($('#liftingFrequency').val());
               
-              if (liftingFrequency >= 15 || liftingFrequency==0) {
+              if (liftingFrequency > 15 || liftingFrequency==0) {
                   // If distance is greater than 63, show the popup
                   $('#popup').addClass('open-popup');
               } else {
@@ -191,7 +191,7 @@
   </script>
   <div id="popup" class="popup-pagination text-center">
     <span>Warning</span>
-    <p>Since Lifting Frequency > 15 , the RWL = 0 . Do You Want To Edit Lifting Frequency</p>
+    <p>Since Lifting Frequency exceeds 15 lifts per minute , the RWL = 0 . Do You Want To Edit Lifting Frequency?</p>
     <div class="input-line">
         <div class="radio_container">
             <label class="close-popup-pagination">Edit</label>

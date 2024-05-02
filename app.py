@@ -139,12 +139,12 @@ def equation5():
             else:
                 value1=request.form['taskDuration']
                 value2=request.form['liftingFrequency']
-                error_message = "Please enter a valid Input."
+                error_message = "Please provide a valid Input. The work work duration must be between 0 and 8 hours."
                 print(error_message)
                 return render_template("equation5.html", page_title="Lifting Frequency Page", error=error_message,value1=value1,value2=value2)
         except ValueError:
             # Handle the case where the input is not a valid number
-            error_message = "Please enter a valid Input."
+            error_message = "Please provide a valid Input. The work work duration must be between 0 and 8 hours."
             return render_template("equation5.html", page_title="Lifting Frequency Page", error=error_message)
 
     return render_template("equation5.html", page_title=" Lifting Frequency Page")
@@ -184,12 +184,12 @@ def recomandtion(li):
                     Risk="cannot be determined"
                     case=1
                 elif  li <= 1 :
-                    Results="SAFE TASKS"
+                    Results="SAFE "
                     Risk="very Low"
                     case=2
 
                 elif 1< li <= 1.5:
-                    Results="UNSAFE TASKS"
+                    Results="UNSAFE "
                     Risk="Low"
                     case=3
                 elif 1.5< li <= 2:

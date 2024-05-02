@@ -73,7 +73,7 @@
                     <div class="col-lg-8">
 
                         <div class="lower-equ-line">
-                            <h4 class="lower-equ-line-header">To Calculate the <span class="active-span">Vertical Mltiplier</span> ( VM ), insert V :</h4>
+                            <h4 class="lower-equ-line-header">To Calculate the <span class="active-span">Vertical Multiplier</span> ( VM ), insert V :</h4>
                             
                             <form id="equationForm" method="post" action="{{ url_for('equation2') }}">
                                 <div class="input-line">
@@ -133,7 +133,7 @@
     $(document).ready(function() {
         $('#nextButton').click(function() {
             var verticalDistance = parseFloat($('#verticalDistance').val());
-            if (verticalDistance >= 175|| verticalDistance==0) {
+            if (verticalDistance > 175) {
                 // If distance is greater than 63, show the popup
                 $('#popup').addClass('open-popup');
             } else {
@@ -155,7 +155,7 @@
 
     <div id="popup" class="popup-pagination text-center">
         <span>Warning</span>
-        <p>Since V> 175 cm, the RWL = 0 . Do You Want To Edit V</p>
+        <p>Since V> 175 cm, the RWL = 0 . Do You Want To Edit V?</p>
         <div class="input-line">
             <div class="radio_container">
                 <label class="close-popup-pagination">Edit</label>

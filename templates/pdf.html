@@ -46,7 +46,9 @@
                             <span class="date-of-now"></span>
                             <img src="../static/assets/images/01.png" alt="">
                         </div>
-
+                            <div class="summary-header text-center my-4">
+                            <h3>INPUTS & CALCULATIONS</h3>
+                            </div>
                         <div class="table-header">
                             <div class="row">
 
@@ -120,7 +122,7 @@
                         <div class="table-content-line">
                             <div class="row align-items-center">
 
-                                <div class="col-lg-6">taskDuration
+                                <div class="col-lg-6">
                                     <span>Frequency (lifts/minute) = {{ user_inputs['liftingFrequency'] }}</span>
                                     <span>Work Duration (hours) ={{ user_inputs['taskDuration'] }} </span>
                                 </div>
@@ -165,8 +167,8 @@
                         </div>
                         {%if res['cases']==1%}
                         <div class="summary-text-content">
-                            <p>Due to the RWL being calculated as {{ report['RWL']|round(2) }}, the Load Index ({{ report['LI'] }}) <span
-                                    class="active-span">cannpt be determined</span>. Please review the recommendations provided to adjust the lifting
+                            <p>Due to the RWL being calculated as {{ report['RWL']|round(2) }}, the Load Index (LI) <span
+                                    class="active-span">cannot be determined</span>. Please review the recommendations provided to adjust the lifting
                                 task for safer conditions.
                             </p>
                         </div>
@@ -231,7 +233,7 @@
                     </div>
                 </div>
 
-                <div class="col-lg-6" id="page2">
+                <div class="col-lg-6">
                     <div class="summary-part">
 
                         <div class="summary-header text-center">
@@ -244,7 +246,12 @@
                         
                         {% if  res['risk'] == "cannot be determined" %}
 
-                            <div class="result-content-info">
+                            <div class="summary-header text-center my-4">
+                            <h3>RECOMMENDATIONS</h3>
+                        </div>
+
+                        <div class="summary-text-content">
+
                                 <p class="font-900">Some parameter values have
                                     exceeded acceptable ranges, resulting
                                     in an RWL of 0. To ensure safe lifting
@@ -253,19 +260,37 @@
                                     adjusting parameter values:</p>
                                 <ul class="font-900 mt-4">
 
-                                    <li>For HM: Adjust the horizontal
-                                        location of the load (H) to be
-                                        below 63 cm.
-                                    </li>
+                                    <li>For <span class="active-span">HM</span>: Adjust the horizontal location of the load
+                                                    (H) to be below 63 cm.</li>
+
+                                                <li>For <span class="active-span">VM</span>: Ensure the vertical location of the load
+                                                    (V) is below 175 cm.</li>
+
+                                                <li>For <span class="active-span">DM</span>: Ensure the distance of the lift (D) is
+                                                    below 175 cm.
+                                                </li>
+
+                                                <li>For <span class="active-span">AM</span>: Adjust the asymmetry angle of the lift (A)
+                                                    to be below 135°.
+                                                </li>
+
+                                                <li>For <span class="active-span">FM</span>: Avoid excessive frequency of lifts and
+                                                    consider adjusting the
+                                                    work duration to ensure safer lifting practices.
+                                                </li>
+
+
 
                                 </ul>
                             </div>
 
 
                                 {% elif res['risk'] == "very Low"  %}
-                                <div class="result-content-part">
-                                    <h3 class="result-text">RECOMMENDATIONS</h3>
-                                    <div class="result-content-info">
+                                <div class="summary-header text-center my-4">
+                            <h3>RECOMMENDATIONS</h3>
+                        </div>
+
+                        <div class="summary-text-content">
                                         <p class="font-900">BASED ON THE PARAMETERS PROVIDED, IT CAN BE CONFIDENTLY STATED THAT
                                             THE LIFTING TASK
                                             MEETS THE SAFETY STANDARDS OF NIOSH, AND IS CONSIDERED <span
@@ -273,65 +298,130 @@
                                     </div>
                                 {% elif res['risk'] == "Low" %}
 
-                                <div class="result-content-part">
-                                    <h3 class="result-text">RECOMMENDATIONS</h3>
-                                    <div class="result-content-info">
+                                <div class="summary-header text-center my-4">
+                                <h3>RECOMMENDATIONS</h3>
+                                </div>
+
+                                <div class="summary-text-content">
                                         <ul class="font-900">
-                                            <li>For the Horizontal Location of the Load ( <span class="active-span">HM</span> ):
-                                                Reduce the distance
-                                                between the body and the load. Keeping the load close to the body
-                                                during the lift decreases back strain and improves stability</li>
-        
-                                            <li>For the Vertical Location of the Load Relative to the Floor ( <span
-                                                    class="active-span">VM</span> ): Adjust
-                                                the starting height of the load to be between knee and waist level. Lifting
-                                                aids or adjustments to the setup should be used to avoid lifting from foor
-                                                level or above shoulder height. Additionally, consider setting the object
-                                                height close to the ideal value of 75 cm to simultaneously increase VM
-                                                and DM.
-                                            </li>
-                                        </ul>
-                                    </div>
-                                        {% elif res['risk'] == 'Moderate' %}
-                                        <div class="result-content-info">
-                                            <ul class="font-900">
-            
-                                                <li>For the Vertical Travel Distance of the Load ( <span
-                                                        class="active-span">DM</span>
-                                                    ): Minimize the vertical
-                                                    distance the load needs to be moved. Avoid lifting or lowering the load
-                                                    more than necessary by rearranging storage or work practices.
-                                                </li>
-            
-                                                <li>For the Asymmetry Angle of the Lift ( <span class="active-span">AM</span> ):
-                                                    Reduce
-                                                    twisting and turning
-                                                    during lifting, aiming to minimize or eliminate them if possible.
-                                                    Additionally, strive to decrease the angle of twisting to approach the ideal
-                                                    angle of 0 degrees for improved ergonomics and lifting safety</li>
-                                            </ul>
-                                        </div>
-                                                {% elif res['risk'] == 'High' %}
-                                                <div class="result-content-info">
-                                                    <ul class="font-900">
-                    
+                                            <li>For the Horizontal Location of the Load (<span
+                                                                class="active-span">HM</span> ): Reduce the distance between the body and the load. Keeping the load close to the body during the lift decreases back strain and improves stability.
+                                                        </li>
+                                                        <li>For the Vertical Location of the Load Relative to the Floor (<span
+                                                                class="active-span">VM</span>): Adjust the starting height of the load to be between knee and waist level. Lifting aids or adjustments to the setup should be used to avoid lifting from floor level or above shoulder height. Additionally, consider setting the object height close to the ideal value of 75 cm to simultaneously increase VM and DM.
+                                                        </li>
+                                                        <li>For the Vertical Travel Distance of the Load (<span
+                                                                class="active-span">DM</span>): Minimize the vertical distance the load needs to be moved. Avoid lifting or lowering the load more than necessary by rearranging storage or work practices.
+                                                        </li>
+                                                        <li> For the Asymmetry Angle of the Lift (<span
+                                                                class="active-span">AM</span>): Reduce twisting and turning during lifting, aiming to minimize or eliminate them if possible. Additionally, strive to decrease the angle of twisting to approach the ideal angle of 0 degrees for improved ergonomics and lifting safety.
+                                                        </li>
                                                         <li>For the Frequency and Duration of Lifting Activity ( <span
                                                                 class="active-span">FM</span> ): FM can be
                                                             increased by decreasing the number of lifts per minute (frequency),
                                                             ensuring adequate rest breaks between lifting tasks, and rotating
                                                             workers to reduce task duration.
                                                         </li>
+                                                        <li> For the Coupling or Quality of the Worker's Grip on the Load (<span
+                                                                class="active-span">CM</span>): Improve the grip on the load by using handles or straps, where possible. The object to be lifted should be stable and easily graspable to reduce the risk of slips and drops.
+                                                        </li>
+                                                        <li>Reducing the actual weight of the load could align with safer lifting parameters.
+                                                        </li>
+                                        </ul>
+                                    </div>
+                                        {% elif res['risk'] == 'Moderate' %}
+                                        <div class="summary-header text-center my-4">
+                                            <h3>RECOMMENDATIONS</h3>
+                                            </div>
+
+                                            <div class="summary-text-content">
+                                                <ul class="font-900">
+            
+                                                <li>For the Horizontal Location of the Load (<span
+                                                                class="active-span">HM</span> ): Reduce the distance between the body and the load. Keeping the load close to the body during the lift decreases back strain and improves stability.
+                                                        </li>
+                                                        <li>For the Vertical Location of the Load Relative to the Floor (<span
+                                                                class="active-span">VM</span>): Adjust the starting height of the load to be between knee and waist level. Lifting aids or adjustments to the setup should be used to avoid lifting from floor level or above shoulder height. Additionally, consider setting the object height close to the ideal value of 75 cm to simultaneously increase VM and DM.
+                                                        </li>
+                                                        <li>For the Vertical Travel Distance of the Load (<span
+                                                                class="active-span">DM</span>): Minimize the vertical distance the load needs to be moved. Avoid lifting or lowering the load more than necessary by rearranging storage or work practices.
+                                                        </li>
+                                                        <li> For the Asymmetry Angle of the Lift (<span
+                                                                class="active-span">AM</span>): Reduce twisting and turning during lifting, aiming to minimize or eliminate them if possible. Additionally, strive to decrease the angle of twisting to approach the ideal angle of 0 degrees for improved ergonomics and lifting safety.
+                                                        </li>
+                                                        <li>For the Frequency and Duration of Lifting Activity ( <span
+                                                                class="active-span">FM</span> ): FM can be
+                                                            increased by decreasing the number of lifts per minute (frequency),
+                                                            ensuring adequate rest breaks between lifting tasks, and rotating
+                                                            workers to reduce task duration.
+                                                        </li>
+                                                        <li> For the Coupling or Quality of the Worker's Grip on the Load (<span
+                                                                class="active-span">CM</span>): Improve the grip on the load by using handles or straps, where possible. The object to be lifted should be stable and easily graspable to reduce the risk of slips and drops.
+                                                        </li>
+                                                        <li>Reducing the actual weight of the load could align with safer lifting parameters.
+                                                        </li>
+                                            </ul>
+                                        </div>
+                                                {% elif res['risk'] == 'High' %}
+                                                <div class="result-content-info">
+                                                    <ul class="font-900">
+                    
+                                                        <li>For the Horizontal Location of the Load (<span
+                                                                class="active-span">HM</span> ): Reduce the distance between the body and the load. Keeping the load close to the body during the lift decreases back strain and improves stability.
+                                                        </li>
+                                                        <li>For the Vertical Location of the Load Relative to the Floor (<span
+                                                                class="active-span">VM</span>): Adjust the starting height of the load to be between knee and waist level. Lifting aids or adjustments to the setup should be used to avoid lifting from floor level or above shoulder height. Additionally, consider setting the object height close to the ideal value of 75 cm to simultaneously increase VM and DM.
+                                                        </li>
+                                                        <li>For the Vertical Travel Distance of the Load (<span
+                                                                class="active-span">DM</span>): Minimize the vertical distance the load needs to be moved. Avoid lifting or lowering the load more than necessary by rearranging storage or work practices.
+                                                        </li>
+                                                        <li> For the Asymmetry Angle of the Lift (<span
+                                                                class="active-span">AM</span>): Reduce twisting and turning during lifting, aiming to minimize or eliminate them if possible. Additionally, strive to decrease the angle of twisting to approach the ideal angle of 0 degrees for improved ergonomics and lifting safety.
+                                                        </li>
+                                                        <li>For the Frequency and Duration of Lifting Activity ( <span
+                                                                class="active-span">FM</span> ): FM can be
+                                                            increased by decreasing the number of lifts per minute (frequency),
+                                                            ensuring adequate rest breaks between lifting tasks, and rotating
+                                                            workers to reduce task duration.
+                                                        </li>
+                                                        <li> For the Coupling or Quality of the Worker's Grip on the Load (<span
+                                                                class="active-span">CM</span>): Improve the grip on the load by using handles or straps, where possible. The object to be lifted should be stable and easily graspable to reduce the risk of slips and drops.
+                                                        </li>
+                                                        <li>Reducing the actual weight of the load could align with safer lifting parameters.
+                                                        </li>
                                                     </ul>
                                                 </div>
                                         {% elif res['risk'] == 'Very High' %}
-                                        <div class="result-content-info">
-                                            <ul class="font-900">
+                                        <div class="summary-header text-center my-4">
+                                        <h3>RECOMMENDATIONS</h3>
+                                        </div>
+
+                                            <div class="summary-text-content">
+                                                <ul class="font-900">
             
-                                                <li>For the Coupling or Quality of the Worker's Grip on the Load ( <span
-                                                        class="active-span">CM</span> ):
-                                                    Improve the grip on the load by using handles or straps, where possible.
-                                                    The object to be lifted should be stable and easily graspable to reduce
-                                                    the risk of slips and drops.</li>
+                                               <li>For the Horizontal Location of the Load (<span
+                                                                class="active-span">HM</span> ): Reduce the distance between the body and the load. Keeping the load close to the body during the lift decreases back strain and improves stability.
+                                                        </li>
+                                                        <li>For the Vertical Location of the Load Relative to the Floor (<span
+                                                                class="active-span">VM</span>): Adjust the starting height of the load to be between knee and waist level. Lifting aids or adjustments to the setup should be used to avoid lifting from floor level or above shoulder height. Additionally, consider setting the object height close to the ideal value of 75 cm to simultaneously increase VM and DM.
+                                                        </li>
+                                                        <li>For the Vertical Travel Distance of the Load (<span
+                                                                class="active-span">DM</span>): Minimize the vertical distance the load needs to be moved. Avoid lifting or lowering the load more than necessary by rearranging storage or work practices.
+                                                        </li>
+                                                        <li> For the Asymmetry Angle of the Lift (<span
+                                                                class="active-span">AM</span>): Reduce twisting and turning during lifting, aiming to minimize or eliminate them if possible. Additionally, strive to decrease the angle of twisting to approach the ideal angle of 0 degrees for improved ergonomics and lifting safety.
+                                                        </li>
+                                                        <li>For the Frequency and Duration of Lifting Activity ( <span
+                                                                class="active-span">FM</span> ): FM can be
+                                                            increased by decreasing the number of lifts per minute (frequency),
+                                                            ensuring adequate rest breaks between lifting tasks, and rotating
+                                                            workers to reduce task duration.
+                                                        </li>
+                                                        <li> For the Coupling or Quality of the Worker's Grip on the Load (<span
+                                                                class="active-span">CM</span>): Improve the grip on the load by using handles or straps, where possible. The object to be lifted should be stable and easily graspable to reduce the risk of slips and drops.
+                                                        </li>
+                                                        <li>Reducing the actual weight of the load could align with safer lifting parameters.
+                                                        </li>
             
                                             </ul>
                                         </div>
