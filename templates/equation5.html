@@ -174,7 +174,7 @@
           $('#nextButton').click(function() {
               var liftingFrequency = parseFloat($('#liftingFrequency').val());
               
-              if (liftingFrequency > 15 || liftingFrequency==0) {
+              if (liftingFrequency > 15) {
                   // If distance is greater than 63, show the popup
                   $('#popup').addClass('open-popup');
               } else {
@@ -195,7 +195,7 @@
     <div class="input-line">
         <div class="radio_container">
             <label class="close-popup-pagination">Edit</label>
-            <label><a href="equation4">No. Go Back To Homepage</a></label>
+            <label><a href="/">No. Go Back To Homepage</a></label>
             <label><a  onclick="submitForm()">Continue</a></label>
         </div>
     </div>

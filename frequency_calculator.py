@@ -5,7 +5,7 @@ def calculate_frequency_multiplier(lifts_per_minute, work_duration, V):
         if V < 75:
             if lifts_per_minute <= 0.2:
                 return 1.00
-            elif 0.2 < lifts_per_minute < 0.5:
+            elif 0.2 < lifts_per_minute == 0.5:
                 return 0.97
             elif lifts_per_minute == 1:
                 return 0.94
@@ -36,7 +36,7 @@ def calculate_frequency_multiplier(lifts_per_minute, work_duration, V):
         elif V >= 75:
             if lifts_per_minute <= 0.2:
                 return 1.00
-            elif 0.2 < lifts_per_minute < 0.5:
+            elif 0.2 < lifts_per_minute == 0.5:
                 return 0.97
             elif lifts_per_minute == 1:
                 return 0.94
@@ -75,7 +75,7 @@ def calculate_frequency_multiplier(lifts_per_minute, work_duration, V):
         if V < 75:
             if lifts_per_minute <= 0.2:
                 return 0.95
-            elif 0.2 < lifts_per_minute <= 0.5:
+            elif 0.2 < lifts_per_minute == 0.5:
                 return 0.92
             elif lifts_per_minute == 1:
                 return 0.88
@@ -102,7 +102,7 @@ def calculate_frequency_multiplier(lifts_per_minute, work_duration, V):
         elif V >= 75:
             if lifts_per_minute <= 0.2:
                 return 0.95
-            elif 0.2 < lifts_per_minute < 0.5:
+            elif 0.2 < lifts_per_minute == 0.5:
                 return 0.92
             elif lifts_per_minute == 1:
                 return 0.88
@@ -135,7 +135,7 @@ def calculate_frequency_multiplier(lifts_per_minute, work_duration, V):
         if V < 75:
             if lifts_per_minute <= 0.2:
                 return 0.85
-            elif 0.2 < lifts_per_minute < 0.5:
+            elif 0.2 < lifts_per_minute == 0.5:
                 return 0.81
             elif lifts_per_minute == 1:
                 return 0.75
@@ -158,7 +158,7 @@ def calculate_frequency_multiplier(lifts_per_minute, work_duration, V):
         elif V >= 75:
             if lifts_per_minute <= 0.2:
                 return 0.85
-            elif 0.2 < lifts_per_minute < 0.5:
+            elif 0.2 < lifts_per_minute == 0.5:
                 return 0.81
             elif lifts_per_minute == 1:
                 return 0.75

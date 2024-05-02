@@ -1,3 +1,4 @@
+import numpy as np
 from flask import Flask, render_template, request, redirect, url_for
 from frequency_calculator import calculate_frequency_multiplier
 from calculate_coupling_multiplier import calculate_coupling_multiplier
@@ -127,10 +128,10 @@ def equation5():
     if request.method == 'POST' and request.form.get('liftingFrequency') is not None and request.form.get('taskDuration'):
         # Check if taskduration is a valid number
         try:
-            
+
             taskduration=float(request.form['taskDuration'])
             liftingFrequency=float(request.form['liftingFrequency'])
-            if taskduration in range(0,9):
+            if taskduration in np.arange(0,8.1,0.1):
                 print(taskduration,liftingFrequency)
                 # Get input from the first page
                 user_inputs['taskDuration'] = taskduration

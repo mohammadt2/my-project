@@ -53,8 +53,11 @@
                             <h3 class="result-text">RESULTS</h3>
                             <div class="result-content-info">
                                 <ul class="font-900">
+                                    {% if report['RWL'] != 0 %}
                                     <li>RWL = {{report['RWL']}}</li>
                                     <li>LI = {{ report['LI'] }}</li>
+                                    {% endif %}
+
                                 </ul>
                                 {% if  res['risk'] == "cannot be determined" %}
 
@@ -65,7 +68,7 @@
                             </p>
 
                                 {% elif res['risk'] == "very Low"  %}
-                                p>RISK LEVEL: <span class="green-span font-900">VERY LOW</span>.</p>
+                                <p>RISK LEVEL: <span class="green-span font-900">VERY LOW</span>.</p>
                                 <p>SINCE THE <span class="font-900">LI ≤ 1</span>, YOUR TASK IS <span
                                         class="green-span font-900">SAFE</span>.</p>
                                 {% elif res['risk'] == "Low" %}
