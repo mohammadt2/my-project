@@ -77,9 +77,7 @@
                
                 <form id="equationForm" action="{{ url_for('equation5') }}" method="post">
                   <div class="input-line">
-                    <span for="liftingFrequency"
-                      >Frequency ( lifts/minute )</span
-                    >
+                    <span for="liftingFrequency">Frequency ( lifts/minute )</span>
                     <span>=</span>
                     <input type="number" id="liftingFrequency" name="liftingFrequency" value="{{value2}}" required autofocus/>
                   </div>
@@ -149,7 +147,7 @@
     </div>
 
     <div class="popup text-center">
-      <p>F (Frequency and Duration of Lifting Activity): This reflects how often and how long lifting tasks are performed. Lower frequency and duration decrease the risk of strain . </p>
+      <p>F (Frequency and Duration of Lifting Activity): This parameter captures two aspects: 'frequency’, which is the number of lifts performed each minute, and 'duration’, which refers to the length of time in hours that lifting tasks are performed during a work shift. A higher frequency of lifts and longer lifting durations typically increase the risk of muscular strain, while reducing the number of lifts per minute and shortening the duration of lifting sessions can help lower this risk. </p>
     </div>
 
     
